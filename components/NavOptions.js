@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, StyleSheet, View, FlatList, TouchableOpacity, Image } from 'react-native'
+import { Text, StyleSheet, View, FlatList, TouchableOpacity, Image, ScrollView } from 'react-native'
 
 const data = [
     {
@@ -11,7 +11,7 @@ const data = [
     {
         id: '456',
         title: 'Order food',
-        image: 'https://e7.pngegg.com/pngimages/514/220/png-clipart-uber-eats-food-delivery-eating-ubereats-logo-food-text-thumbnail.png',
+        image: 'https://cdn.iconscout.com/icon/free/png-256/free-uber-eats-1613370-1369417.png',
         screen: 'EatsScreen'
     },
 ]
@@ -22,17 +22,17 @@ const NavOptions = () => {
             data={data}
             horizontal
             keyExtractor={(item) => item.id}
-            renderItem={({ item}) => {
+            renderItem={({ item}) => (
                 <TouchableOpacity>
-                    <View>
-                        <Text>Hello{item.title}</Text>
-                        <Image
-                            style={{ width: 120, height: 120, resizeMode: 'contain'}}
-                            source={{ uri: item.image }}
-                        />
-                    </View>
-                </TouchableOpacity>
-            }}
+                <View>
+                    <Image
+                        style={{ width: 120, height: 120, resizeMode: 'contain'}}
+                        source={{ uri: item.image }}
+                    />
+                </View>
+            </TouchableOpacity>
+            ) 
+            }
         />
       )
 }
