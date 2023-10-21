@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text, StyleSheet, View, FlatList, TouchableOpacity, Image, ScrollView } from 'react-native'
+import tw from 'tailwind-react-native-classnames'
 
 const data = [
     {
@@ -29,10 +30,10 @@ const NavOptions = () => {
                         style={{ width: 120, height: 120, resizeMode: 'contain'}}
                         source={{ uri: item.image }}
                     />
+                    <Text style={tw`mt-2 text-lg font-semibold`}>{item.title}</Text>
                 </View>
             </TouchableOpacity>
-            ) 
-            }
+            )}
         />
       )
 }
