@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, StyleSheet, View } from 'react-native'
+import { Text, StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import tw from 'tailwind-react-native-classnames'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
@@ -8,31 +8,41 @@ import { useDispatch } from 'react-redux'
 import { setDestination } from '../slices/navSlice'
 import { useNavigation } from '@react-navigation/native'
 
-const NavigateCard = () => {
-    // const dispatch = useDispatch()
-    // const navigation = useNavigation()
+
+const NavigateCard = ( ) => {
+    const dispatch = useDispatch()
+    const navigation = useNavigation()
 
     return (
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <SafeAreaView style={tw`bg-white flex-1`}>
-        <Text style={tw`text-center py-5 text-xl`}>Good Morning, Wan</Text>
+        <Text style={tw`text-center py-3 text-xl`}>Good Morning, Wan</Text>
+        
         <View style={tw`border-t border-gray-200 flex-shrink`}>
             <View>
                 <GooglePlacesAutocomplete
                     placeholder='Where to?'
-                    styles={toInputBoxstyles}
+                    styles={{
+                        container: {
+                            flex: 0,
+                        },
+                        textInput: {
+                            fontSize: 18,
+                        },
+                    }}
 
                     onPress={(data, details = null) => {
-                        dispatch(
-                            setDestination({
-                                location: details.geometry.location,
-                                description: data.description
-                        }))
+                        dispatch(setDestination({
+                            location: details.geometry.location,
+                            description: data.description
+                        }));
 
-                        navigation.navigate('RideOptionsCard')
+                        navigation.navigate('RideOptionsCard');
                     }}
                     fetchDetails={true}
                     returnKeyType={"Search"}
                     enablePoweredByContainer={false}
+                    keepResultsAfterBlur={true}
                     minLength={2}
 
                     query={{
@@ -43,9 +53,11 @@ const NavigateCard = () => {
                     debounce={400}
                 />
             </View>
+            
         </View>
+        
       </SafeAreaView>
-   
+      </TouchableWithoutFeedback>
     )
 }
 export default NavigateCard
@@ -53,7 +65,7 @@ export default NavigateCard
 const toInputBoxstyles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
-        paddingTop: 20,
+        paddingTop: 10,
         flex: 0,
     },
     textInput: {
