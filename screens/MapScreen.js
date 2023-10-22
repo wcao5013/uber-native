@@ -24,9 +24,7 @@ const MapScreen = () => {
                         headerShown: false,
                     }}
                 />
-            </Stack.Navigator>
 
-            <Stack.Navigator>
                 <Stack.Screen
                     name='RideOptionsCard'
                     component={RideOptionsCard}
