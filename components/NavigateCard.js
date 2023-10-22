@@ -15,49 +15,48 @@ const NavigateCard = ( ) => {
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <SafeAreaView style={tw`bg-white flex-1`}>
-        <Text style={tw`text-center py-3 text-xl`}>Good Morning, Wan</Text>
-        
-        <View style={tw`border-t border-gray-200 flex-shrink`}>
-            <View>
-                <GooglePlacesAutocomplete
-                    placeholder='Where to?'
-                    styles={{
-                        container: {
-                            flex: 0,
-                        },
-                        textInput: {
-                            fontSize: 18,
-                        },
-                    }}
+            <SafeAreaView style={tw`bg-white flex-1 pt-0`}>
+                <Text style={tw`text-center text-xl pb-2`}>Good Morning, Wan</Text>
+                <View style={tw`border-t border-gray-200 flex-shrink`}>
+                    <View>
+                        <GooglePlacesAutocomplete
+                            placeholder='Where to?'
+                            styles={{
+                                container: {
+                                    flex: 0,
+                                },
+                                textInput: {
+                                    fontSize: 18,
+                                },
+                            }}
 
-                    onPress={(data, details = null) => {
-                        dispatch(setDestination({
-                            location: details.geometry.location,
-                            description: data.description
-                        }));
+                            onPress={(data, details = null) => {
+                                dispatch(setDestination({
+                                    location: details.geometry.location,
+                                    description: data.description
+                                }));
 
-                        navigation.navigate('RideOptionsCard');
-                    }}
-                    fetchDetails={true}
-                    returnKeyType={"Search"}
-                    enablePoweredByContainer={false}
-                    keepResultsAfterBlur={true}
-                    minLength={2}
+                                navigation.navigate('RideOptionsCard');
+                            }}
+                            fetchDetails={true}
+                            returnKeyType={"Search"}
+                            enablePoweredByContainer={false}
+                            keepResultsAfterBlur={true}
+                            minLength={2}
 
-                    query={{
-                        key: GOOGLE_MAPS_APIKEY,
-                        language: 'en'
-                    }}
-                    nearbyPlacesAPI='GooglePlacesSearch'
-                    debounce={400}
-                />
-            </View>
-            
-        </View>
-        
-      </SafeAreaView>
-      </TouchableWithoutFeedback>
+                            query={{
+                                key: GOOGLE_MAPS_APIKEY,
+                                language: 'en'
+                            }}
+                            nearbyPlacesAPI='GooglePlacesSearch'
+                            debounce={400}
+                        />
+                    </View>
+                    
+                </View>
+                
+            </SafeAreaView>
+        </TouchableWithoutFeedback>
     )
 }
 export default NavigateCard

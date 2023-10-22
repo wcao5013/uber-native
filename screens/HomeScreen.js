@@ -47,6 +47,7 @@ const HomeScreen = () => {
                 returnKeyType={"Search"}
                 enablePoweredByContainer={false}
                 minLength={2}
+                keepResultsAfterBlur={true}
 
                 query={{
                     key: GOOGLE_MAPS_APIKEY,
